@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f8f7f3">
+  <meta name="description" content="First Aid Assistant offers general first-aid information and a private health profile demo.">
+  <title>First Aid Assistant — Clear guidance, calmer moments</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <section class="auth-screen" id="auth-screen" aria-labelledby="auth-title">
+    <div class="auth-orbit orbit-one"></div><div class="auth-orbit orbit-two"></div>
+    <div class="auth-brand"><span class="brand-mark"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 4.2c-6.5 0-11.8 5.3-11.8 11.8S9.5 27.8 16 27.8 27.8 22.5 27.8 16 22.5 4.2 16 4.2Zm1.9 6v4h4v3.6h-4v4h-3.7v-4h-4v-3.6h4v-4h3.7Z" fill="currentColor"/></svg></span><span>First Aid<span>Assistant</span></span></div>
+    <div class="auth-card">
+      <div class="auth-card-top"><span class="auth-eyebrow"><span class="auth-pulse"></span> YOUR PERSONAL HEALTH SPACE</span><span class="auth-sparkle">✳</span></div>
+      <h1 id="auth-title">A little care,<br><em>starting with you.</em></h1>
+      <p class="auth-intro" id="auth-intro">Create your account to get started. Your details help personalize your health profile.</p>
+      <div class="auth-tabs" role="tablist" aria-label="Account access"><button class="auth-tab selected" id="signup-tab" role="tab" aria-selected="true" type="button">Create account</button><button class="auth-tab" id="login-tab" role="tab" aria-selected="false" type="button">Log in</button></div>
+      <form id="signup-form" class="auth-form">
+        <div class="auth-grid">
+          <label class="auth-field"><span>Full name</span><input name="name" autocomplete="name" placeholder="e.g. Aanya Sharma" required maxlength="80"></label>
+          <label class="auth-field"><span>Age</span><input name="age" type="number" min="13" max="120" inputmode="numeric" placeholder="e.g. 20" required></label>
+          <label class="auth-field"><span>Height <small>cm</small></span><input name="height" type="number" min="50" max="250" step="0.1" inputmode="decimal" placeholder="e.g. 168" required></label>
+          <label class="auth-field"><span>Weight <small>kg</small></span><input name="weight" type="number" min="10" max="400" step="0.1" inputmode="decimal" placeholder="e.g. 64" required></label>
+          <label class="auth-field auth-wide"><span>Email address</span><input name="email" type="email" autocomplete="email" placeholder="you@example.com" required maxlength="254"></label>
+          <label class="auth-field auth-wide"><span>Phone number</span><input name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="Your phone number" required maxlength="20"></label>
+          <label class="auth-field"><span>Password</span><input name="password" type="password" autocomplete="new-password" placeholder="At least 8 characters" required minlength="8" maxlength="128"></label>
+          <label class="auth-field"><span>Confirm password</span><input name="confirmPassword" type="password" autocomplete="new-password" placeholder="Type it again" required minlength="8" maxlength="128"></label>
+        </div>
+        <p class="auth-error" id="signup-error" role="alert" hidden></p>
+        <button class="auth-submit" type="submit">Create my account <span>→</span></button>
+        <p class="auth-legal">By continuing, you understand this is a student demo, not a medical service. <span>Your details stay in this tab only.</span></p>
+      </form>
+      <form id="login-form" class="auth-form" hidden>
+        <label class="auth-field auth-wide"><span>Email address</span><input name="email" type="email" autocomplete="email" placeholder="you@example.com" required maxlength="254"></label>
+        <label class="auth-field auth-wide"><span>Password</span><input name="password" type="password" autocomplete="current-password" placeholder="Your password" required maxlength="128"></label>
+        <p class="auth-error" id="login-error" role="alert" hidden></p>
+        <button class="auth-submit" type="submit">Log in <span>→</span></button>
+        <p class="auth-legal">Demo account details exist only until this page is refreshed or closed.</p>
+      </form>
+    </div>
+    <p class="auth-footer">A calm place to start <span>·</span> General information only</p>
+  </section>
+  <div class="app-shell" id="app-shell" hidden>
+    <aside class="sidebar" aria-label="Main navigation">
+      <a class="brand" href="#home" aria-label="First Aid Assistant home">
+        <span class="brand-mark"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 4.2c-6.5 0-11.8 5.3-11.8 11.8S9.5 27.8 16 27.8 27.8 22.5 27.8 16 22.5 4.2 16 4.2Zm1.9 6v4h4v3.6h-4v4h-3.7v-4h-4v-3.6h4v-4h3.7Z" fill="currentColor"/></svg></span>
+        <span class="brand-name">First Aid<span>Assistant</span></span>
+      </a>
+      <div class="nav-label">YOUR SPACE</div>
+      <nav class="nav-links">
+        <button class="nav-item active" data-page="chat" aria-current="page"><span class="nav-icon">✳</span><span>AI health guide</span></button>
+        <button class="nav-item" data-page="profile"><span class="nav-icon">◉</span><span>My health profile</span></button>
+      </nav>
+      <div class="sidebar-spacer"></div>
+      <div class="sidebar-help"><span class="help-icon">i</span><div><strong>Need urgent help?</strong><p>Call your local emergency number.</p></div></div>
+      <button class="sidebar-foot logout-button" id="logout-button"><span class="online-dot"></span> <span>Private session</span><span class="logout-label">Log out ↗</span></button>
+    </aside>
+
+    <main class="main-area" id="home">
+      <header class="topbar">
+        <button class="mobile-brand" aria-label="First Aid Assistant"><span class="brand-mark small">✚</span> First Aid Assistant</button>
+        <div class="topbar-left"><span class="breadcrumb">Your space</span><span class="crumb-slash">/</span><span id="page-title">AI health guide</span></div>
+        <div class="topbar-right"><button class="mobile-logout" id="mobile-logout" type="button">Log out</button><span class="privacy-pill"><span>⌑</span> Your details stay on this device</span><button class="avatar" data-page="profile" aria-label="Open health profile">A</button></div>
+      </header>
+
+      <section class="page active-page" id="chat-page" aria-labelledby="welcome-title">
+        <div class="chat-layout">
+          <div class="chat-column">
+            <div class="welcome-block">
+              <div class="eyebrow"><span class="eyebrow-line"></span> HERE FOR YOU, ANYTIME</div>
+              <h1 id="welcome-title">Let’s figure out<br>what’s <em>going on.</em></h1>
+              <p class="welcome-copy" id="personal-greeting">Tell me what you’re experiencing. I can share general health information and help you think about a safe next step.</p>
+            </div>
+
+            <div class="trust-note"><span class="sparkle">✳</span><span>This is a helpful guide, not a doctor. It can’t diagnose or prescribe medicines.</span><button class="info-button" title="Learn more" aria-label="Learn more about this guide">i</button></div>
+
+            <div class="conversation" id="conversation" aria-live="polite" aria-label="Conversation">
+              <article class="message assistant-message">
+                <div class="assistant-avatar">✚</div>
+                <div class="message-content"><div class="message-meta">FIRST AID ASSISTANT <span>•</span> JUST NOW</div><div class="message-bubble">Hi there. I’m glad you reached out. What’s bothering you today? Share when it started, what it feels like, and anything that makes it better or worse. Please leave out your name or other identifying details.</div></div>
+              </article>
+            </div>
+
+            <div class="composer-wrap">
+              <form id="chat-form" class="composer">
+                <label class="sr-only" for="prompt">Describe what you’re experiencing</label>
+                <textarea id="prompt" rows="1" maxlength="1200" placeholder="Describe what you’re experiencing…" required></textarea>
+                <div class="composer-bottom"><span class="input-hint"><span>↵</span> Enter to send <span class="hint-divider">·</span> Shift + Enter for a new line</span><span class="char-count" id="char-count">0 / 1,200</span><button class="send-button" type="submit" aria-label="Send message"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12 20 4l-5.6 16-2.7-6.6L4 12Zm7.7 1.4L20 4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
+              </form>
+              <p class="composer-disclaimer">If you think someone is in immediate danger, contact emergency services now.</p>
+            </div>
+          </div>
+          <aside class="right-rail">
+            <div class="rail-card emergency-card"><div class="card-heading"><span class="card-icon alert-icon">!</span><span>WHEN IT CAN’T WAIT</span></div><h3>Get urgent help</h3><p>Call your local emergency number for severe trouble breathing, chest pain, fainting, heavy bleeding, or sudden weakness.</p><div class="rail-divider"></div><span class="emergency-foot"><span class="red-dot"></span> Don’t wait for a chat reply</span></div>
+            <div class="rail-card prompts-card"><div class="card-heading"><span class="card-icon prompt-icon">✳</span><span>NOT SURE WHERE TO START?</span></div><h3>Try asking</h3><div class="prompt-list"><button class="prompt-chip" data-prompt="I have a headache that started this morning. What should I watch for?">“I have a headache…” <span>↗</span></button><button class="prompt-chip" data-prompt="I have a small kitchen burn. What first aid should I do?">“I got a small burn…” <span>↗</span></button><button class="prompt-chip" data-prompt="I have had a cough for a few days. What symptoms mean I should seek care?">“I’ve had a cough…” <span>↗</span></button></div><p class="prompt-foot">Please don’t include names, phone numbers, or other personal details.</p></div>
+            <div class="rail-tip"><span class="tip-sparkle">✳</span><p><strong>A small reminder</strong><br>Online guidance can’t replace an in-person medical check when you’re worried.</p></div>
+          </aside>
+        </div>
+      </section>
+      <section class="page account-page" id="account-page" aria-labelledby="account-title" hidden>
+        <div class="account-layout">
+          <div class="account-intro">
+            <div class="eyebrow"><span class="eyebrow-line"></span> A LITTLE ABOUT YOU</div>
+            <h1 id="account-title">Create your<br><em>account.</em></h1>
+            <p class="welcome-copy">Set up your details to get started. This prototype checks the form in your browser, but does not create or store an account.</p>
+            <div class="account-note"><span>⌑</span><p><strong>Your health details are sensitive.</strong><br>Use fictional information in this demo. A real account needs a secure server and a clear privacy policy.</p></div>
+          </div>
+          <form class="account-form" id="account-form" novalidate>
+            <div class="account-form-heading"><div><span class="section-kicker">YOUR DETAILS</span><h2>Let’s get to know you</h2></div><span class="section-index">01</span></div>
+            <div class="account-fields">
+              <label class="field full-field"><span>Full name</span><input id="account-name" name="name" type="text" autocomplete="name" maxlength="100" placeholder="e.g. Aditi Sharma" required></label>
+              <label class="field"><span>Age</span><div class="input-unit"><input id="account-age" name="age" type="number" min="1" max="120" inputmode="numeric" placeholder="e.g. 20" required><span>years</span></div></label>
+              <label class="field"><span>Email address</span><input id="account-email" name="email" type="email" autocomplete="email" maxlength="254" placeholder="you@example.com" required></label>
+              <label class="field"><span>Height</span><div class="input-unit"><input id="account-height" name="height" type="number" min="50" max="250" step="0.1" inputmode="decimal" placeholder="e.g. 168" required><span>cm</span></div></label>
+              <label class="field"><span>Weight</span><div class="input-unit"><input id="account-weight" name="weight" type="number" min="10" max="400" step="0.1" inputmode="decimal" placeholder="e.g. 64" required><span>kg</span></div></label>
+              <label class="field full-field"><span>Phone number</span><input id="account-phone" name="phone" type="tel" autocomplete="tel" maxlength="20" inputmode="tel" placeholder="Include your country code, e.g. +91 98765 43210" required></label>
+              <label class="field full-field"><span>Choose a password</span><div class="password-wrap"><input id="account-password" name="password" type="password" autocomplete="new-password" minlength="12" maxlength="128" placeholder="At least 12 characters" required><button class="show-password" type="button" data-target="account-password">Show</button></div><small class="password-hint">Use at least 12 characters. A long, unique passphrase is easier to remember.</small></label>
+              <label class="field full-field"><span>Confirm password</span><div class="password-wrap"><input id="account-confirm" name="confirmPassword" type="password" autocomplete="new-password" minlength="12" maxlength="128" placeholder="Type your password again" required><button class="show-password" type="button" data-target="account-confirm">Show</button></div><span class="field-error" id="password-error" aria-live="polite"></span></label>
+            </div>
+            <button class="create-account-button" type="submit">Continue <span>→</span></button>
+            <p class="account-result" id="account-result" aria-live="polite"></p>
+            <p class="account-terms">By continuing, you confirm these are demo details. No account is created and no information is sent.</p>
+          </form>
+        </div>
+      </section>
+
+      <section class="page profile-page" id="profile-page" aria-labelledby="profile-title" hidden>
+        <div class="profile-content">
+          <div class="eyebrow"><span class="eyebrow-line"></span> YOUR HEALTH, AT A GLANCE</div>
+          <h1 id="profile-title">Your health<br><em>snapshot.</em></h1>
+          <p class="welcome-copy">A simple place to keep track of a few health measurements. Everything you enter stays in this browser tab only.</p>
+          <div class="account-summary" id="account-summary"></div>
+          <div class="profile-banner"><span>i</span><div><strong>For your reference</strong><p>These numbers are not a diagnosis. A clinician can help you understand what they mean for you.</p></div></div>
+          <form class="profile-form" id="profile-form">
+            <div class="section-head"><div><span class="section-kicker">PERSONAL MEASUREMENTS</span><h2>Body basics</h2></div><span class="section-index">01</span></div>
+            <div class="field-grid two-col">
+              <label class="field"><span>Height</span><div class="input-unit"><input id="height" type="number" min="50" max="250" step="0.1" placeholder="e.g. 168" inputmode="decimal"><span>cm</span></div></label>
+              <label class="field"><span>Weight</span><div class="input-unit"><input id="weight" type="number" min="10" max="400" step="0.1" placeholder="e.g. 64" inputmode="decimal"><span>kg</span></div></label>
+            </div>
+            <div class="bmi-result"><div><span class="result-label">BODY MASS INDEX <span class="info-mini">i</span></span><strong id="bmi-value">—</strong></div><span class="bmi-status" id="bmi-status">Enter height &amp; weight</span></div>
+            <div class="section-head vitals-head"><div><span class="section-kicker">RECENT CHECKS</span><h2>Health readings</h2></div><span class="section-index">02</span></div>
+            <div class="field-grid two-col">
+              <label class="field"><span>Blood pressure <small>(systolic / diastolic)</small></span><div class="input-unit"><input id="bp" type="text" placeholder="e.g. 120 / 80" inputmode="numeric" maxlength="9"><span>mmHg</span></div></label>
+              <label class="field"><span>Cholesterol <small>(total)</small></span><div class="input-unit"><input id="cholesterol" type="number" min="0" max="1000" placeholder="e.g. 180" inputmode="decimal"><span>mg/dL</span></div></label>
+              <label class="field"><span>Blood sugar <small>(fasting)</small></span><div class="input-unit"><input id="sugar" type="number" min="0" max="1000" placeholder="e.g. 90" inputmode="decimal"><span>mg/dL</span></div></label>
+            </div>
+            <div class="profile-actions"><span class="save-status" id="save-status">Saved for this tab only</span><button class="clear-button" id="clear-profile" type="button">Clear details</button></div>
+          </form>
+        </div>
+        <aside class="profile-side"><div class="rail-card guide-card"><span class="guide-icon">✳</span><span class="section-kicker">A GENTLE NOTE</span><h3>Numbers are only part of the picture.</h3><p>Readings can vary with timing and circumstances. If a result worries you, contact a qualified healthcare professional for advice.</p></div><div class="profile-side-note"><span>⌑</span><p><strong>Your privacy matters.</strong><br>Profile details are held temporarily in this tab and are cleared when it closes.</p></div></aside>
+      </section>
+      <footer class="page-footer"><span>Made with care for your wellbeing</span><span>General information only <b>·</b> Not a medical diagnosis</span></footer>
+    </main>
+  </div>
+</body>
+</html>
